@@ -2,6 +2,13 @@
 // JavaScript for ESG HR Consulting Website
 // ===================================
 
+// Configuration
+const CONFIG = {
+    FORM_SUBMIT_DELAY: 1500, // Milliseconds to simulate form submission
+    TOOLTIP_INIT_DELAY: 1000, // Delay before initializing tooltips
+    OBSERVER_DELAYS: [1000, 2000] // Delays for re-observing elements
+};
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -86,8 +93,9 @@ function initScrollAnimations() {
     observeElements();
     
     // Re-observe after a delay to catch dynamically loaded content
-    setTimeout(observeElements, 1000);
-    setTimeout(observeElements, 2000);
+    CONFIG.OBSERVER_DELAYS.forEach(delay => {
+        setTimeout(observeElements, delay);
+    });
 }
 
 // Initialize smooth scrolling
@@ -196,7 +204,7 @@ function initContactForm() {
             
             // Log form data (for development)
             console.log('Form submitted:', data);
-        }, 1500);
+        }, CONFIG.FORM_SUBMIT_DELAY);
     });
 }
 
@@ -239,8 +247,9 @@ function initCounterAnimations() {
     }
     
     observeCounters();
-    setTimeout(observeCounters, 1000);
-    setTimeout(observeCounters, 2000);
+    CONFIG.OBSERVER_DELAYS.forEach(delay => {
+        setTimeout(observeCounters, delay);
+    });
 }
 
 // Animate counter
@@ -278,7 +287,7 @@ function initTooltips() {
 }
 
 // Call tooltip initialization
-setTimeout(initTooltips, 1000);
+setTimeout(initTooltips, CONFIG.TOOLTIP_INIT_DELAY);
 
 // Add parallax effect to hero section
 window.addEventListener('scroll', function() {
