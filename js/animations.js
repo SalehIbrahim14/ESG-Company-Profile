@@ -10,23 +10,23 @@ const CONFIG = {
 };
 
 // Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
+    // alert('Welcome to ESG HR Consulting! Explore our services and get in touch for more information.');
     // Load section content dynamically
     loadSectionContent();
-    
+
     // Initialize scroll animations
     initScrollAnimations();
-    
+
     // Initialize smooth scrolling for navigation links
     initSmoothScroll();
-    
+
     // Initialize navbar scroll effect
     initNavbarScroll();
-    
+
     // Initialize contact form
     initContactForm();
-    
+
     // Initialize counter animations
     initCounterAnimations();
 });
@@ -39,7 +39,7 @@ function loadSectionContent() {
         { id: 'customers-content', file: 'sections/old_customers.html' },
         { id: 'contact-content', file: 'sections/contact_us.html' }
     ];
-    
+
     sections.forEach(section => {
         fetch(section.file)
             .then(response => response.text())
@@ -74,24 +74,24 @@ function initScrollAnimations() {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
             }
         });
     }, observerOptions);
-    
+
     // Observe all elements with scroll-animate class
     function observeElements() {
         const animateElements = document.querySelectorAll('.scroll-animate');
         animateElements.forEach(element => observer.observe(element));
     }
-    
+
     // Initial observation
     observeElements();
-    
+
     // Re-observe after a delay to catch dynamically loaded content
     CONFIG.OBSERVER_DELAYS.forEach(delay => {
         setTimeout(observeElements, delay);
@@ -101,19 +101,19 @@ function initScrollAnimations() {
 // Initialize smooth scrolling
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 const headerOffset = 80;
                 const elementPosition = target.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
+
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
-                
+
                 // Update active nav link
                 updateActiveNavLink(this);
             }
@@ -133,19 +133,19 @@ function updateActiveNavLink(clickedLink) {
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
     let lastScroll = 0;
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         const currentScroll = window.pageYOffset;
-        
+
         // Add shadow on scroll
         if (currentScroll > 50) {
             navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
         } else {
             navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
         }
-        
+
         lastScroll = currentScroll;
-        
+
         // Update active section in navigation
         updateActiveSection();
     });
@@ -155,12 +155,12 @@ function initNavbarScroll() {
 function updateActiveSection() {
     const sections = document.querySelectorAll('section[id]');
     const scrollPosition = window.pageYOffset + 150;
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionId = section.getAttribute('id');
-        
+
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
@@ -176,32 +176,32 @@ function updateActiveSection() {
 function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
-    
-    form.addEventListener('submit', function(e) {
+
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
-        
+
         // Get form data
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        
+
         // Show loading state
         const submitButton = form.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
-        
+
         // Simulate form submission (replace with actual API call)
-        setTimeout(function() {
+        setTimeout(function () {
             // Show success message
             showFormMessage('success', 'Thank you for your message! We will get back to you soon.');
-            
+
             // Reset form
             form.reset();
-            
+
             // Reset button
             submitButton.textContent = originalText;
             submitButton.disabled = false;
-            
+
             // Log form data (for development)
             console.log('Form submitted:', data);
         }, CONFIG.FORM_SUBMIT_DELAY);
@@ -212,13 +212,13 @@ function initContactForm() {
 function showFormMessage(type, message) {
     const messageDiv = document.getElementById('formMessage');
     if (!messageDiv) return;
-    
+
     messageDiv.className = type === 'success' ? 'alert alert-success' : 'alert alert-danger';
     messageDiv.textContent = message;
     messageDiv.style.display = 'block';
-    
+
     // Hide message after 5 seconds
-    setTimeout(function() {
+    setTimeout(function () {
         messageDiv.style.display = 'none';
     }, 5000);
 }
@@ -226,12 +226,12 @@ function showFormMessage(type, message) {
 // Initialize counter animations
 function initCounterAnimations() {
     const counters = document.querySelectorAll('.counter');
-    
+
     const observerOptions = {
         threshold: 0.5
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
                 animateCounter(entry.target);
@@ -239,13 +239,13 @@ function initCounterAnimations() {
             }
         });
     }, observerOptions);
-    
+
     // Re-observe counters periodically to catch dynamically loaded content
     function observeCounters() {
         const counterElements = document.querySelectorAll('.counter');
         counterElements.forEach(counter => observer.observe(counter));
     }
-    
+
     observeCounters();
     CONFIG.OBSERVER_DELAYS.forEach(delay => {
         setTimeout(observeCounters, delay);
@@ -258,8 +258,8 @@ function animateCounter(element) {
     const duration = 2000;
     const increment = target / (duration / 16);
     let current = 0;
-    
-    const timer = setInterval(function() {
+
+    const timer = setInterval(function () {
         current += increment;
         if (current >= target) {
             element.textContent = target;
@@ -271,7 +271,7 @@ function animateCounter(element) {
 }
 
 // Add hover effects to cards
-document.addEventListener('mouseover', function(e) {
+document.addEventListener('mouseover', function (e) {
     if (e.target.closest('.service-card, .testimonial-card, .feature-card, .value-card')) {
         const card = e.target.closest('.service-card, .testimonial-card, .feature-card, .value-card');
         card.style.transition = 'all 0.3s ease';
@@ -281,7 +281,7 @@ document.addEventListener('mouseover', function(e) {
 // Initialize tooltips if Bootstrap tooltips are needed
 function initTooltips() {
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(function(tooltipTriggerEl) {
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 }
@@ -290,7 +290,7 @@ function initTooltips() {
 setTimeout(initTooltips, CONFIG.TOOLTIP_INIT_DELAY);
 
 // Add parallax effect to hero section
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const scrolled = window.pageYOffset;
     const heroSection = document.querySelector('.hero-section');
     if (heroSection) {
@@ -312,10 +312,8 @@ function debounce(func, wait) {
 }
 
 // Apply debounce to scroll-heavy functions
-const debouncedScroll = debounce(function() {
+const debouncedScroll = debounce(function () {
     updateActiveSection();
 }, 100);
 
 window.addEventListener('scroll', debouncedScroll);
-
-console.log('ESG HR Consulting website initialized successfully!');
