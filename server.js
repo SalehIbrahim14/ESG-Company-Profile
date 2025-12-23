@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
-const { log } = require("console");
+const fs = require("fs");
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
@@ -14,68 +15,52 @@ app.use(bodyParser.json());
 
 // Route to handle email sending
 app.post("/send", async (req, res) => {
-  const { name, email, message } = req.body;
-// Looking to send emails in production? Check out our Email API/SMTP product!
-const Nodemailer = require("nodemailer");
-const { MailtrapTransport } = require("mailtrap");
+  const { name, email, message, phone, service, companyName } = req.body;
 
-const TOKEN = "deea318212c894088de62334e86b96cf";
+  // Path to the Arabic email template
+  const templatePath = path.join(__dirname, "email-template.html");
 
-const transport = Nodemailer.createTransport(
-  MailtrapTransport({
-    token: TOKEN,
-    sandbox: true,
-    testInboxId: 1624851,
-  })
-);
+  try {
+    fs.readFile(templatePath, "utf8", async (err, html) => {
+      if (err) {
+        console.error("Error reading HTML file:", err);
+        return res.status(500).send("Failed to process email template.");
+      }
 
-const sender = {
-  address: "hello@example.com",
-  name: "Mailtrap Test",
-};
-const recipients = [
-  "saleh4536217890@gmail.com",
-];
+      // Replace placeholders in the template
+      const updatedHtml = html
+        .replace("{{name}}", name || "غير متوفر")
+        .replace("{{email}}", email || "غير متوفر")
+        .replace("{{phone}}", phone || "غير متوفر")
+        .replace("{{service}}", service || "غير متوفر")
+        .replace("{{companyName}}", companyName || "غير متوفر")
+        .replace("{{message}}", message || "غير متوفر");
 
-transport
-  .sendMail({
-    from: sender,
-    to: recipients,
-    subject: "You are awesome!",
-    text: "Congrats for sending test email with Mailtrap!",
-    category: "Integration Test",
-  })
-  .then(res.status(200).send("Message sent successfully!"), res.status(500).send("Failed to send the message."));
+      const transporter = nodemailer.createTransport({
+        host: "sandbox.smtp.mailtrap.io",
+        port: 587,
+        auth: {
+          user: process.env.MAILTRAP_USER,
+          pass: process.env.MAILTRAP_PASS
+        }
+      });
 
-  // Create a transporter using Mailtrap credentials
-  // const transporter = nodemailer.createTransport({
-  //   host: "sandbox.smtp.mailtrap.io",
-  //   port: 25,
-  //   auth: {
-  //     user: "15c07d0cd0e19d", //process.env.MAILTRAP_USER, // Replace with your Mailtrap username
-  //     pass: "9f621c7ec1dbb2", //process.env.MAILTRAP_PASS // Replace with your Mailtrap password
-  //   }
-  // });
-
-  // console.log('transporter: ', transporter);
+      // Configure email options
+      const mailOptions = {
+        from: email, // User's email
+        to: "your_company@example.com", // Replace with your company email
+        subject: `New Message from ${name}`,
+        html: updatedHtml,
+      };
 
 
-  // // Configure email options
-  // const mailOptions = {
-  //   from: email, // User's email
-  //   to: "your_company@example.com", // Replace with your company email
-  //   subject: `New Message from ${name}`,
-  //   text: message
-  // };
-
-  // try {
-  //   // Send the email
-  //   await transporter.sendMail(mailOptions);
-  //   res.status(200).send("Message sent successfully!");
-  // } catch (error) {
-  //   console.error("Error sending email: ", error);
-  //   res.status(500).send("Failed to send the message.");
-  // }
+      await transporter.sendMail(mailOptions);
+      res.status(200).send("Message sent successfully!");
+    });
+  } catch (error) {
+    console.error("Error sending email: ", error);
+    res.status(500).send("Failed to send the message.");
+  }
 });
 
 // Run the server

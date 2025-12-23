@@ -24,6 +24,12 @@ async function sendEmail() {
     const name = document.getElementById("fullName").value;
     const email = document.getElementById("email").value;
     const message = document.getElementById("message").value;
+    const phone = document.getElementById("phone").value;
+    const service = document.getElementById("service").value;
+    const companyName = document.getElementById("companyName").value;
+
+    console.log("form data:", { name, email, message, phone, service, companyName });
+    const formMessage = document.getElementById("formMessage");
 
     try {
         const response = await fetch("http://localhost:3000/send", {
@@ -31,14 +37,16 @@ async function sendEmail() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ name, email, message })
+            body: JSON.stringify({ name, email, message, phone, service, companyName })
         });
 
         if (response.ok) {
-            alert("Your message has been sent successfully!");
+            formMessage.content = "Thank you for contacting us. We will get back to you shortly.";
+            formMessage.style.display = "block";
             contactForm.reset();
         } else {
-            alert("Failed to send your message. Please try again later.");
+            formMessage.content = "Failed to send your message. Please try again later.";
+            formMessage.style.display = "block";
         }
     } catch (error) {
         console.error("Error:", error);
