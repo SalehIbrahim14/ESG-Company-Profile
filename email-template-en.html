@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="email_template_title">رسالة جديدة</title>
+    <title>New Message</title>
     <style>
         body {
             font-family: "Arial", sans-serif;
             line-height: 1.8;
-            direction: rtl;
-            text-align: right;
+            direction: ltr;
+            text-align: left;
         }
         .email-header {
             background-color: #f4f4f4;
@@ -35,20 +35,20 @@
 </head>
 <body>
     <div class="email-header">
-        <h2>رسالة جديدة</h2>
+        <h2>New Message</h2>
     </div>
     <div class="email-content">
-        <p><strong>الاسم:</strong> {{name}}</p>
-        <p><strong>البريد الإلكتروني:</strong> {{email}}</p>
-        <p><strong>رقم الهاتف:</strong> {{phone}}</p>
-        <p><strong>اسم الشركة:</strong> {{companyName}}</p>
-        <p><strong>الخدمة المطلوبة:</strong> {{service}}</p>
+        <p><strong>Name:</strong> {{name}}</p>
+        <p><strong>Email:</strong> {{email}}</p>
+        <p><strong>Phone Number:</strong> {{phone}}</p>
+        <p><strong>Company Name:</strong> {{companyName}}</p>
+        <p><strong>Service Requested:</strong> {{service}}</p>
         <div class="separator"></div>
-        <p><strong>الرسالة:</strong></p>
+        <p><strong>Message:</strong></p>
         <p>{{message}}</p>
     </div>
     <div class="email-footer">
-        <p>شكرًا لتواصلك معنا!</p>
+        <p>Thank you for contacting us!</p>
     </div>
 </body>
 </html>
