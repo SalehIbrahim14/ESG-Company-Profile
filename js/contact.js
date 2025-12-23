@@ -14,8 +14,10 @@ async function sendEmail() {
     console.log("Form data:", { name, email, message, phone, service, companyName });
     const formMessage = document.getElementById("formMessage");
 
-    // Get current language from global variable or localStorage
-    const currentLang = window.currentLang || localStorage.getItem("preferredLanguage") || "ar";
+    // Get current language using the global function from lang-switch.js
+    const currentLang = typeof window.getCurrentLanguage === 'function' 
+        ? window.getCurrentLanguage() 
+        : (localStorage.getItem("preferredLanguage") || "ar");
 
     try {
         const response = await fetch("http://localhost:3000/send", {

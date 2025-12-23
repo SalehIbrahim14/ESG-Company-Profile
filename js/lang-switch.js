@@ -1,6 +1,8 @@
 // JavaScript: Language switcher for ESG HR Consulting website
+const DEFAULT_LANGUAGE = 'ar'; // Default language is Arabic
+
 let currentTranslations = {};
-let currentLang = "ar"; // Default language is Arabic
+let currentLang = DEFAULT_LANGUAGE;
 
 document.addEventListener("DOMContentLoaded", function () {
   const langEnButton = document.getElementById("lang-en");
@@ -106,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
   langArButton.addEventListener("click", () => loadLanguage("ar"));
 
   // Load saved language preference or default to Arabic
-  const savedLang = localStorage.getItem("preferredLanguage") || "ar";
+  const savedLang = localStorage.getItem("preferredLanguage") || DEFAULT_LANGUAGE;
   loadLanguage(savedLang);
 });
 
@@ -125,4 +127,9 @@ window.translateDynamicContent = function() {
       }
     });
   }
+};
+
+// Global function to get current language
+window.getCurrentLanguage = function() {
+  return currentLang;
 };

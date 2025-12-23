@@ -31,14 +31,17 @@ app.post("/send", async (req, res) => {
         return res.status(500).send("Failed to process email template.");
       }
 
+      // Define localized fallback values
+      const notAvailable = language === "en" ? "N/A" : "غير متوفر";
+
       // Replace placeholders in template
       const updatedHtml = html
-        .replace("{{name}}", name || "N/A")
-        .replace("{{email}}", email || "N/A")
-        .replace("{{phone}}", phone || "N/A")
-        .replace("{{service}}", service || "N/A")
-        .replace("{{companyName}}", companyName || "N/A")
-        .replace("{{message}}", message || "N/A");
+        .replace("{{name}}", name || notAvailable)
+        .replace("{{email}}", email || notAvailable)
+        .replace("{{phone}}", phone || notAvailable)
+        .replace("{{service}}", service || notAvailable)
+        .replace("{{companyName}}", companyName || notAvailable)
+        .replace("{{message}}", message || notAvailable);
 
       const transporter = nodemailer.createTransport({
         host: "sandbox.smtp.mailtrap.io",
