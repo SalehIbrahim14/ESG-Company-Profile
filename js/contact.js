@@ -41,11 +41,11 @@ async function sendEmail() {
         });
 
         if (response.ok) {
-            formMessage.content = "شكرًا لتواصلك معنا. سنتواصل معك قريبًا.";
+            formMessage.textContent = "شكرًا لتواصلك معنا. سنتواصل معك قريبًا.";
             formMessage.style.display = "block";
             contactForm.reset();
         } else {
-            formMessage.content = "فشل إرسال رسالتك. يرجى المحاولة مرة أخرى لاحقًا.";
+            formMessage.textContent = "فشل إرسال رسالتك. يرجى المحاولة مرة أخرى لاحقًا.";
             formMessage.style.display = "block";
         }
     } catch (error) {
