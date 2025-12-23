@@ -1,25 +1,25 @@
 // document.addEventListener("DOMContentLoaded", () => {
-//     console.log("DOMContentLoaded event triggered!");
+//     console.log("تم تشغيل حدث DOMContentLoaded!");
 //     const contactForm = document.getElementById("contactForm");
-//     console.log('contact form: ', contactForm);
+//     console.log('نموذج الاتصال: ', contactForm);
 
-//     // Verify that the form exists
+//     // التحقق من وجود النموذج
 //     if (!contactForm) {
-//         console.error("Contact Form not found in the DOM!");
+//         console.error("لم يتم العثور على نموذج الاتصال في DOM!");
 //         return;
 //     }
 
-//     // Add an event listener to the form
+//     // إضافة مستمع حدث للنموذج
 //     contactForm.addEventListener("submit", async (event) => {
-//         event.preventDefault(); // Prevent default form submission
+//         event.preventDefault(); // منع إرسال النموذج الافتراضي
 
-//         // Form submission logic
+//         // منطق إرسال النموذج
 //         await sendEmail();
 //     });
 // });
 
 async function sendEmail() {
-    console.log("send email function");
+    console.log("دالة إرسال البريد الإلكتروني");
 
     const name = document.getElementById("fullName").value;
     const email = document.getElementById("email").value;
@@ -28,7 +28,7 @@ async function sendEmail() {
     const service = document.getElementById("service").value;
     const companyName = document.getElementById("companyName").value;
 
-    console.log("form data:", { name, email, message, phone, service, companyName });
+    console.log("بيانات النموذج:", { name, email, message, phone, service, companyName });
     const formMessage = document.getElementById("formMessage");
 
     try {
@@ -41,15 +41,15 @@ async function sendEmail() {
         });
 
         if (response.ok) {
-            formMessage.content = "Thank you for contacting us. We will get back to you shortly.";
+            formMessage.content = "شكرًا لتواصلك معنا. سنتواصل معك قريبًا.";
             formMessage.style.display = "block";
             contactForm.reset();
         } else {
-            formMessage.content = "Failed to send your message. Please try again later.";
+            formMessage.content = "فشل إرسال رسالتك. يرجى المحاولة مرة أخرى لاحقًا.";
             formMessage.style.display = "block";
         }
     } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again.");
+        console.error("خطأ:", error);
+        alert("حدث خطأ. يرجى المحاولة مرة أخرى.");
     }
 }

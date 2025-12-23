@@ -9,25 +9,25 @@ require("dotenv").config();
 const app = express();
 const PORT = 3000;
 
-// Middleware
-app.use(cors()); // Allow cross-origin requests
+// البرمجيات الوسيطة
+app.use(cors()); // السماح بالطلبات عبر المصادر
 app.use(bodyParser.json());
 
-// Route to handle email sending
+// مسار لمعالجة إرسال البريد الإلكتروني
 app.post("/send", async (req, res) => {
   const { name, email, message, phone, service, companyName } = req.body;
 
-  // Path to the Arabic email template
+  // المسار إلى قالب البريد الإلكتروني العربي
   const templatePath = path.join(__dirname, "email-template.html");
 
   try {
     fs.readFile(templatePath, "utf8", async (err, html) => {
       if (err) {
-        console.error("Error reading HTML file:", err);
-        return res.status(500).send("Failed to process email template.");
+        console.error("خطأ في قراءة ملف HTML:", err);
+        return res.status(500).send("فشلت معالجة قالب البريد الإلكتروني.");
       }
 
-      // Replace placeholders in the template
+      // استبدال العناصر النائبة في القالب
       const updatedHtml = html
         .replace("{{name}}", name || "غير متوفر")
         .replace("{{email}}", email || "غير متوفر")
@@ -45,25 +45,25 @@ app.post("/send", async (req, res) => {
         }
       });
 
-      // Configure email options
+      // تكوين خيارات البريد الإلكتروني
       const mailOptions = {
-        from: email, // User's email
-        to: "your_company@example.com", // Replace with your company email
-        subject: `New Message from ${name}`,
+        from: email, // البريد الإلكتروني للمستخدم
+        to: "your_company@example.com", // استبدل ببريدك الإلكتروني للشركة
+        subject: `رسالة جديدة من ${name}`,
         html: updatedHtml,
       };
 
 
       await transporter.sendMail(mailOptions);
-      res.status(200).send("Message sent successfully!");
+      res.status(200).send("تم إرسال الرسالة بنجاح!");
     });
   } catch (error) {
-    console.error("Error sending email: ", error);
-    res.status(500).send("Failed to send the message.");
+    console.error("خطأ في إرسال البريد الإلكتروني: ", error);
+    res.status(500).send("فشل إرسال الرسالة.");
   }
 });
 
-// Run the server
+// تشغيل الخادم
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`الخادم يعمل على http://localhost:${PORT}`);
 });

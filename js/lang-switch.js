@@ -1,14 +1,14 @@
-// JavaScript: lang-switch.js
+// جافا سكريبت: lang-switch.js
 document.addEventListener("DOMContentLoaded", function () {
   const elementsToTranslate = document.querySelectorAll("[data-translate]");
   const langEnButton = document.getElementById("lang-en");
   const langArButton = document.getElementById("lang-ar");
 
-  // HTML Head element for dynamically adding/removing CSS
+  // عنصر Head في HTML لإضافة/إزالة CSS ديناميكيًا
   const headElement = document.querySelector("head");
   let rtlStylesheet;
 
-  // Load translations dynamically based on chosen language
+  // تحميل الترجمات ديناميكيًا بناءً على اللغة المختارة
   async function loadLanguage(lang) {
     const response = await fetch(`translations/${lang}.json`);
     const translations = await response.json();
@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
       element.textContent = translations[key];
     });
 
-    // Handle direction (RTL or LTR) and styles applied
+    // التعامل مع الاتجاه (RTL أو LTR) والأنماط المطبقة
     if (lang === "ar") {
       document.body.setAttribute("dir", "rtl");
 
-      // Add rtl-style.css dynamically
+      // إضافة rtl-style.css ديناميكيًا
       if (!rtlStylesheet) {
         rtlStylesheet = document.createElement("link");
         rtlStylesheet.setAttribute("rel", "stylesheet");
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       document.body.setAttribute("dir", "ltr");
 
-      // Remove rtl-style.css dynamically
+      // إزالة rtl-style.css ديناميكيًا
       if (rtlStylesheet) {
         rtlStylesheet.remove();
         rtlStylesheet = null;
@@ -39,10 +39,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Event Listeners for Language Buttons
+  // مستمعي الأحداث لأزرار اللغة
   langEnButton.addEventListener("click", () => loadLanguage("en"));
   langArButton.addEventListener("click", () => loadLanguage("ar"));
 
-  // Default Language
+  // اللغة الافتراضية
   loadLanguage("en");
 });

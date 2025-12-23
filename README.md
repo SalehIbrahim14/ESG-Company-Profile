@@ -1,154 +1,154 @@
-# ESG HR Consulting - Company Profile Website
+# استشارات ESG للموارد البشرية - موقع ملف الشركة
 
-A professional, responsive website for ESG HR Consulting company built with HTML5, CSS3, Bootstrap 5, and JavaScript.
+موقع ويب احترافي ومتجاوب لشركة استشارات ESG للموارد البشرية تم بناؤه باستخدام HTML5 و CSS3 و Bootstrap 5 و JavaScript.
 
-## 🌟 Features
+## 🌟 المميزات
 
-- **Responsive Design**: Fully responsive layout that works on all devices
-- **Modern UI/UX**: Clean, professional design with smooth animations
-- **Bootstrap 5**: Utilizing the latest Bootstrap framework for responsive components
-- **Interactive Elements**: Smooth scrolling, hover effects, and animated counters
-- **Contact Form**: Functional contact form with validation
-- **Modular Structure**: Sections are organized in separate HTML files for easy maintenance
+- **تصميم متجاوب**: تخطيط متجاوب بالكامل يعمل على جميع الأجهزة
+- **واجهة مستخدم/تجربة مستخدم حديثة**: تصميم نظيف واحترافي مع رسوم متحركة سلسة
+- **Bootstrap 5**: استخدام أحدث إطار عمل Bootstrap للمكونات المتجاوبة
+- **عناصر تفاعلية**: تمرير سلس، تأثيرات التمرير، وعدادات متحركة
+- **نموذج اتصال**: نموذج اتصال وظيفي مع التحقق من الصحة
+- **هيكل معياري**: تنظيم الأقسام في ملفات HTML منفصلة لسهولة الصيانة
 
-## 📁 Project Structure
+## 📁 هيكل المشروع
 
 ```
 ESG-Company-Profile/
-├── index.html              # Main HTML file with all sections
-├── sections/               # Individual section HTML files
-│   ├── company_info.html   # Company overview and values
-│   ├── services.html       # HR consulting services
-│   ├── old_customers.html  # Client testimonials and statistics
-│   └── contact_us.html     # Contact form and information
+├── index.html              # ملف HTML الرئيسي مع جميع الأقسام
+├── sections/               # ملفات HTML للأقسام الفردية
+│   ├── company_info.html   # نظرة عامة على الشركة والقيم
+│   ├── services.html       # خدمات استشارات الموارد البشرية
+│   ├── old_customers.html  # شهادات العملاء والإحصائيات
+│   └── contact_us.html     # نموذج الاتصال والمعلومات
 ├── css/
-│   └── styles.css          # Custom styles and animations
+│   └── styles.css          # الأنماط المخصصة والرسوم المتحركة
 ├── js/
-│   └── animations.js       # JavaScript for interactions and animations
-└── README.md               # Project documentation
+│   └── animations.js       # جافا سكريبت للتفاعلات والرسوم المتحركة
+└── README.md               # توثيق المشروع
 ```
 
-## 🚀 Getting Started
+## 🚀 البدء
 
-### Prerequisites
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- A local web server (optional, for development)
+### المتطلبات الأساسية
+- متصفح ويب حديث (Chrome، Firefox، Safari، Edge)
+- خادم ويب محلي (اختياري، للتطوير)
 
-### Running the Website
+### تشغيل الموقع
 
-#### Option 1: Direct File Opening
-Simply open `index.html` in your web browser.
+#### الخيار 1: فتح الملف مباشرة
+ببساطة افتح `index.html` في متصفح الويب الخاص بك.
 
-#### Option 2: Using Python HTTP Server
+#### الخيار 2: استخدام خادم HTTP بايثون
 ```bash
 # Python 3
 python3 -m http.server 8000
 
-# Then open http://localhost:8000 in your browser
+# ثم افتح http://localhost:8000 في متصفحك
 ```
 
-#### Option 3: Using Node.js HTTP Server
+#### الخيار 3: استخدام خادم HTTP Node.js
 ```bash
 npx http-server -p 8000
-# Then open http://localhost:8000 in your browser
+# ثم افتح http://localhost:8000 في متصفحك
 ```
 
-## 📄 Website Sections
+## 📄 أقسام الموقع
 
-1. **Hero Section**: Eye-catching introduction with call-to-action buttons
-2. **Company Info**: Overview of ESG HR Consulting, mission, and values
-3. **Services**: Comprehensive list of HR consulting services offered
-4. **Our Clients**: Client testimonials, statistics, and success stories
-5. **Contact Us**: Contact form and company contact information
-6. **Footer**: Quick links and social media connections
+1. **القسم الرئيسي**: مقدمة جذابة مع أزرار دعوة للعمل
+2. **معلومات الشركة**: نظرة عامة على استشارات ESG للموارد البشرية، المهمة، والقيم
+3. **الخدمات**: قائمة شاملة بخدمات استشارات الموارد البشرية المقدمة
+4. **عملاؤنا**: شهادات العملاء، الإحصائيات، وقصص النجاح
+5. **اتصل بنا**: نموذج الاتصال ومعلومات الشركة
+6. **التذييل**: روابط سريعة واتصالات وسائل التواصل الاجتماعي
 
-## 🎨 Customization
+## 🎨 التخصيص
 
-### Changing Colors
-Edit the CSS variables in `css/styles.css`:
+### تغيير الألوان
+عدل متغيرات CSS في `css/styles.css`:
 ```css
 :root {
     --primary-color: #0d6efd;
     --secondary-color: #6c757d;
-    /* Add more color variables */
+    /* إضافة المزيد من متغيرات الألوان */
 }
 ```
 
-### Modifying Content
-- Update section content by editing files in the `sections/` directory
-- Modify the main structure in `index.html`
-- Customize styles in `css/styles.css`
-- Adjust animations and interactions in `js/animations.js`
+### تعديل المحتوى
+- تحديث محتوى القسم عن طريق تحرير الملفات في دليل `sections/`
+- تعديل الهيكل الرئيسي في `index.html`
+- تخصيص الأنماط في `css/styles.css`
+- ضبط الرسوم المتحركة والتفاعلات في `js/animations.js`
 
-## 🛠️ Technologies Used
+## 🛠️ التقنيات المستخدمة
 
-- **HTML5**: Semantic markup
-- **CSS3**: Custom styles and animations
-- **Bootstrap 5.3.0**: Responsive framework
-- **Bootstrap Icons**: Icon library
-- **JavaScript (ES6+)**: Interactive functionality
-- **Intersection Observer API**: Scroll animations
-- **Fetch API**: Dynamic content loading
+- **HTML5**: ترميز دلالي
+- **CSS3**: أنماط مخصصة ورسوم متحركة
+- **Bootstrap 5.3.0**: إطار عمل متجاوب
+- **Bootstrap Icons**: مكتبة الأيقونات
+- **JavaScript (ES6+)**: وظائف تفاعلية
+- **Intersection Observer API**: رسوم متحركة عند التمرير
+- **Fetch API**: تحميل المحتوى الديناميكي
 
-## ✨ Key Features
+## ✨ المميزات الرئيسية
 
-### Animations
-- Smooth scroll to sections
-- Fade-in animations on scroll
-- Hover effects on cards and buttons
-- Animated counters for statistics
+### الرسوم المتحركة
+- تمرير سلس إلى الأقسام
+- رسوم متحركة للظهور عند التمرير
+- تأثيرات التمرير على البطاقات والأزرار
+- عدادات متحركة للإحصائيات
 
-### Responsive Design
-- Mobile-first approach
-- Breakpoints for all device sizes
-- Touch-friendly navigation
+### التصميم المتجاوب
+- نهج أولاً الهاتف المحمول
+- نقاط توقف لجميع أحجام الأجهزة
+- تنقل سهل اللمس
 
-### Performance
-- Optimized loading with CDN resources
-- Efficient JavaScript with debouncing
-- Minimal dependencies
+### الأداء
+- تحميل محسّن مع موارد CDN
+- جافا سكريبت فعال مع التقليل
+- الحد الأدنى من التبعيات
 
-## 📱 Browser Support
+## 📱 دعم المتصفحات
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
+- Chrome (أحدث إصدار)
+- Firefox (أحدث إصدار)
+- Safari (أحدث إصدار)
+- Edge (أحدث إصدار)
+- متصفحات الهاتف المحمول (iOS Safari، Chrome Mobile)
 
-## 📧 Contact Form
+## 📧 نموذج الاتصال
 
-The contact form includes:
-- Client-side validation
-- Loading state indicator
-- Success/error messages
-- Form reset after submission
+يتضمن نموذج الاتصال:
+- التحقق من جانب العميل
+- مؤشر حالة التحميل
+- رسائل النجاح/الخطأ
+- إعادة تعيين النموذج بعد الإرسال
 
-Note: The form currently simulates submission. To connect to a backend, modify the form submission handler in `js/animations.js`.
+ملاحظة: يحاكي النموذج حاليًا الإرسال. للاتصال بالخلفية، عدل معالج إرسال النموذج في `js/animations.js`.
 
-## 📝 License
+## 📝 الترخيص
 
-This project is created for ESG HR Consulting Company.
+تم إنشاء هذا المشروع لشركة استشارات ESG للموارد البشرية.
 
-## 👨‍💻 Development
+## 👨‍💻 التطوير
 
-To contribute or modify:
+للمساهمة أو التعديل:
 
-1. Clone the repository
-2. Make your changes
-3. Test thoroughly across different browsers
-4. Submit your updates
+1. استنسخ المستودع
+2. قم بإجراء تغييراتك
+3. اختبر جيدًا عبر متصفحات مختلفة
+4. أرسل تحديثاتك
 
-## 🔄 Future Enhancements
+## 🔄 التحسينات المستقبلية
 
-Potential improvements:
-- Add backend integration for contact form
-- Implement CMS for content management
-- Add blog section
-- Integrate analytics
-- Add more interactive elements
-- Implement dark mode toggle
+التحسينات المحتملة:
+- إضافة تكامل الخلفية لنموذج الاتصال
+- تنفيذ CMS لإدارة المحتوى
+- إضافة قسم مدونة
+- دمج التحليلات
+- إضافة المزيد من العناصر التفاعلية
+- تنفيذ تبديل الوضع الداكن
 
 ---
 
-**Built with ❤️ for ESG HR Consulting**
+**تم البناء بـ ❤️ لاستشارات ESG للموارد البشرية**
