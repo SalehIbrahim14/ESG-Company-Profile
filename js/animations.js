@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initCounterAnimations();
 });
 
-// تحميل محتوى القسم من ملفات HTML منفصلة
+// Load section content from separate HTML files
 function loadSectionContent() {
     const sections = [
         { id: 'company-info-content', file: 'sections/company_info.html' },
@@ -47,15 +47,19 @@ function loadSectionContent() {
                 const element = document.getElementById(section.id);
                 if (element) {
                     element.innerHTML = html;
-                    // إعادة تهيئة نموذج الاتصال بعد تحميل قسم الاتصال
+                    // Re-initialize contact form after loading contact section
                     if (section.id === 'contact-content') {
                         initContactForm();
                     }
-                    // إضافة فئات الرسوم المتحركة للتمرير إلى المحتوى المحمّل حديثًا
+                    // Add scroll animation classes to newly loaded content
                     addScrollAnimationClasses(element);
+                    // Translate newly loaded content
+                    if (typeof window.translateDynamicContent === 'function') {
+                        window.translateDynamicContent();
+                    }
                 }
             })
-            .catch(error => console.error('خطأ في تحميل القسم:', error));
+            .catch(error => console.error('Error loading section:', error));
     });
 }
 
