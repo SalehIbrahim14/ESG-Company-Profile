@@ -1,37 +1,37 @@
 // ===================================
-// JavaScript for ESG HR Consulting Website
+// جافا سكريبت لموقع استشارات ESG للموارد البشرية
 // ===================================
 
-// Configuration
+// الإعدادات
 const CONFIG = {
-    FORM_SUBMIT_DELAY: 1500, // Milliseconds to simulate form submission
-    TOOLTIP_INIT_DELAY: 1000, // Delay before initializing tooltips
-    OBSERVER_DELAYS: [1000, 2000] // Delays for re-observing elements
+    FORM_SUBMIT_DELAY: 1500, // مللي ثانية لمحاكاة إرسال النموذج
+    TOOLTIP_INIT_DELAY: 1000, // تأخير قبل تهيئة التلميحات
+    OBSERVER_DELAYS: [1000, 2000] // تأخيرات لإعادة مراقبة العناصر
 };
 
-// Wait for DOM to be fully loaded
+// انتظر تحميل DOM بالكامل
 document.addEventListener('DOMContentLoaded', function () {
-    // alert('Welcome to ESG HR Consulting! Explore our services and get in touch for more information.');
-    // Load section content dynamically
+    // alert('مرحبًا بك في استشارات ESG للموارد البشرية! استكشف خدماتنا وتواصل معنا للحصول على مزيد من المعلومات.');
+    // تحميل محتوى القسم بشكل ديناميكي
     loadSectionContent();
 
-    // Initialize scroll animations
+    // تهيئة الرسوم المتحركة عند التمرير
     initScrollAnimations();
 
-    // Initialize smooth scrolling for navigation links
+    // تهيئة التمرير السلس لروابط التنقل
     initSmoothScroll();
 
-    // Initialize navbar scroll effect
+    // تهيئة تأثير التمرير في شريط التنقل
     initNavbarScroll();
 
-    // Initialize contact form
+    // تهيئة نموذج الاتصال
     initContactForm();
 
-    // Initialize counter animations
+    // تهيئة الرسوم المتحركة للعداد
     initCounterAnimations();
 });
 
-// Load section content from separate HTML files
+// تحميل محتوى القسم من ملفات HTML منفصلة
 function loadSectionContent() {
     const sections = [
         { id: 'company-info-content', file: 'sections/company_info.html' },
@@ -47,19 +47,19 @@ function loadSectionContent() {
                 const element = document.getElementById(section.id);
                 if (element) {
                     element.innerHTML = html;
-                    // Reinitialize contact form after loading contact section
+                    // إعادة تهيئة نموذج الاتصال بعد تحميل قسم الاتصال
                     if (section.id === 'contact-content') {
                         initContactForm();
                     }
-                    // Add scroll animation classes to newly loaded content
+                    // إضافة فئات الرسوم المتحركة للتمرير إلى المحتوى المحمّل حديثًا
                     addScrollAnimationClasses(element);
                 }
             })
-            .catch(error => console.error('Error loading section:', error));
+            .catch(error => console.error('خطأ في تحميل القسم:', error));
     });
 }
 
-// Add scroll animation classes to elements
+// إضافة فئات الرسوم المتحركة للتمرير إلى العناصر
 function addScrollAnimationClasses(container) {
     const elements = container.querySelectorAll('.service-card, .testimonial-card, .value-card, .feature-card');
     elements.forEach((element, index) => {
@@ -68,7 +68,7 @@ function addScrollAnimationClasses(container) {
     });
 }
 
-// Initialize scroll animations
+// تهيئة الرسوم المتحركة عند التمرير
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -83,22 +83,22 @@ function initScrollAnimations() {
         });
     }, observerOptions);
 
-    // Observe all elements with scroll-animate class
+    // مراقبة جميع العناصر بفئة scroll-animate
     function observeElements() {
         const animateElements = document.querySelectorAll('.scroll-animate');
         animateElements.forEach(element => observer.observe(element));
     }
 
-    // Initial observation
+    // المراقبة الأولية
     observeElements();
 
-    // Re-observe after a delay to catch dynamically loaded content
+    // إعادة المراقبة بعد تأخير للقبض على المحتوى المحمّل ديناميكيًا
     CONFIG.OBSERVER_DELAYS.forEach(delay => {
         setTimeout(observeElements, delay);
     });
 }
 
-// Initialize smooth scrolling
+// تهيئة التمرير السلس
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -114,14 +114,14 @@ function initSmoothScroll() {
                     behavior: 'smooth'
                 });
 
-                // Update active nav link
+                // تحديث رابط التنقل النشط
                 updateActiveNavLink(this);
             }
         });
     });
 }
 
-// Update active navigation link
+// تحديث رابط التنقل النشط
 function updateActiveNavLink(clickedLink) {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
@@ -129,7 +129,7 @@ function updateActiveNavLink(clickedLink) {
     clickedLink.classList.add('active');
 }
 
-// Initialize navbar scroll effect
+// تهيئة تأثير التمرير في شريط التنقل
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
     let lastScroll = 0;
@@ -137,7 +137,7 @@ function initNavbarScroll() {
     window.addEventListener('scroll', function () {
         const currentScroll = window.pageYOffset;
 
-        // Add shadow on scroll
+        // إضافة ظل عند التمرير
         if (currentScroll > 50) {
             navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
         } else {
@@ -146,12 +146,12 @@ function initNavbarScroll() {
 
         lastScroll = currentScroll;
 
-        // Update active section in navigation
+        // تحديث القسم النشط في التنقل
         updateActiveSection();
     });
 }
 
-// Update active section based on scroll position
+// تحديث القسم النشط بناءً على موضع التمرير
 function updateActiveSection() {
     const sections = document.querySelectorAll('section[id]');
     const scrollPosition = window.pageYOffset + 150;
@@ -172,7 +172,7 @@ function updateActiveSection() {
     });
 }
 
-// Initialize contact form
+// تهيئة نموذج الاتصال
 function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
@@ -180,35 +180,35 @@ function initContactForm() {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Get form data
+        // الحصول على بيانات النموذج
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
 
-        // Show loading state
+        // عرض حالة التحميل
         const submitButton = form.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
-        submitButton.textContent = 'Sending...';
+        submitButton.textContent = 'جاري الإرسال...';
         submitButton.disabled = true;
 
-        // Simulate form submission (replace with actual API call)
+        // محاكاة إرسال النموذج (استبدل بمكالمة API فعلية)
         setTimeout(function () {
-            // Show success message
-            showFormMessage('success', 'Thank you for your message! We will get back to you soon.');
+            // عرض رسالة النجاح
+            showFormMessage('success', 'شكرًا لرسالتك! سنتواصل معك قريبًا.');
 
-            // Reset form
+            // إعادة تعيين النموذج
             form.reset();
 
-            // Reset button
+            // إعادة تعيين الزر
             submitButton.textContent = originalText;
             submitButton.disabled = false;
 
-            // Log form data (for development)
-            console.log('Form submitted:', data);
+            // تسجيل بيانات النموذج (للتطوير)
+            console.log('تم إرسال النموذج:', data);
         }, CONFIG.FORM_SUBMIT_DELAY);
     });
 }
 
-// Show form message
+// عرض رسالة النموذج
 function showFormMessage(type, message) {
     const messageDiv = document.getElementById('formMessage');
     if (!messageDiv) return;
@@ -217,13 +217,13 @@ function showFormMessage(type, message) {
     messageDiv.textContent = message;
     messageDiv.style.display = 'block';
 
-    // Hide message after 5 seconds
+    // إخفاء الرسالة بعد 5 ثوانٍ
     setTimeout(function () {
         messageDiv.style.display = 'none';
     }, 5000);
 }
 
-// Initialize counter animations
+// تهيئة الرسوم المتحركة للعداد
 function initCounterAnimations() {
     const counters = document.querySelectorAll('.counter');
 
@@ -240,7 +240,7 @@ function initCounterAnimations() {
         });
     }, observerOptions);
 
-    // Re-observe counters periodically to catch dynamically loaded content
+    // إعادة مراقبة العدادات بشكل دوري للقبض على المحتوى المحمّل ديناميكيًا
     function observeCounters() {
         const counterElements = document.querySelectorAll('.counter');
         counterElements.forEach(counter => observer.observe(counter));
@@ -252,7 +252,7 @@ function initCounterAnimations() {
     });
 }
 
-// Animate counter
+// تحريك العداد
 function animateCounter(element) {
     const target = parseInt(element.textContent);
     const duration = 2000;
@@ -270,7 +270,7 @@ function animateCounter(element) {
     }, 16);
 }
 
-// Add hover effects to cards
+// إضافة تأثيرات التمرير على البطاقات
 document.addEventListener('mouseover', function (e) {
     if (e.target.closest('.service-card, .testimonial-card, .feature-card, .value-card')) {
         const card = e.target.closest('.service-card, .testimonial-card, .feature-card, .value-card');
@@ -278,7 +278,7 @@ document.addEventListener('mouseover', function (e) {
     }
 });
 
-// Initialize tooltips if Bootstrap tooltips are needed
+// تهيئة التلميحات إذا كانت تلميحات Bootstrap مطلوبة
 function initTooltips() {
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -286,10 +286,10 @@ function initTooltips() {
     });
 }
 
-// Call tooltip initialization
+// استدعاء تهيئة التلميحات
 setTimeout(initTooltips, CONFIG.TOOLTIP_INIT_DELAY);
 
-// Add parallax effect to hero section
+// إضافة تأثير التوازي إلى القسم الرئيسي
 window.addEventListener('scroll', function () {
     const scrolled = window.pageYOffset;
     const heroSection = document.querySelector('.hero-section');
@@ -298,7 +298,7 @@ window.addEventListener('scroll', function () {
     }
 });
 
-// Performance optimization: Debounce scroll events
+// تحسين الأداء: تقليل أحداث التمرير
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -311,7 +311,7 @@ function debounce(func, wait) {
     };
 }
 
-// Apply debounce to scroll-heavy functions
+// تطبيق التقليل على الوظائف المكثفة للتمرير
 const debouncedScroll = debounce(function () {
     updateActiveSection();
 }, 100);
