@@ -1,7 +1,3 @@
-// ===================================
-// JavaScript for ESG HR Consulting Website
-// ===================================
-
 // Configuration settings
 const CONFIG = {
     FORM_SUBMIT_DELAY: 1500, // Milliseconds to simulate form submission

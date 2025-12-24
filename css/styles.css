@@ -274,6 +274,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -318,6 +319,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -329,6 +331,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -360,19 +363,19 @@ body {
     .section-title {
         font-size: 2rem;
     }
-    
+
     .hero-section {
         padding: 60px 0 0;
     }
-    
+
     .hero-section .display-3 {
         font-size: 2.5rem;
     }
-    
+
     .section-spacing {
         padding: 50px 0;
     }
-    
+
     .navbar-brand {
         font-size: 1.2rem;
     }
@@ -382,11 +385,11 @@ body {
     .section-title {
         font-size: 1.75rem;
     }
-    
+
     .hero-section .display-3 {
         font-size: 2rem;
     }
-    
+
     .btn-lg {
         padding: 0.5rem 1.5rem;
         font-size: 1rem;
@@ -395,9 +398,12 @@ body {
 
 /* Loading Animation */
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.5;
     }
@@ -417,8 +423,19 @@ body {
         transform: translateY(-20px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+
+.language-switcher {
+    margin-right: 0rem !important;
+    margin-left: 12rem !important;
+}
+
+.min-vh-100 {
+    min-height: 50vh !important;
 }

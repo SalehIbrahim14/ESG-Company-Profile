@@ -19,9 +19,10 @@ app.post("/send", async (req, res) => {
 
   // Determine language (default to Arabic if not specified)
   const language = lang || "ar";
-  
+
   // Select appropriate email template based on language
-  const templateFileName = language === "en" ? "email-template-en.html" : "email-template.html";
+  // const templateFileName = language === "en" ? "email-template-en.html" : "email-template.html";
+  const templateFileName = "email-template.html";
   const templatePath = path.join(__dirname, templateFileName);
 
   try {

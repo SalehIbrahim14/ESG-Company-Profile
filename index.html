@@ -21,7 +21,7 @@
 <body>
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow-lg">
-        <div class="container">
+        <div class="container ltr-text">
             <a class="navbar-brand fw-bold" href="#home">
                 <i class="bi bi-building"></i> <span data-translate="navbar_brand">استشارات ESG للموارد البشرية</span>
             </a>
@@ -48,8 +48,10 @@
                     <li>
                         <!-- Language switcher -->
                         <div class="language-switcher">
-                            <button id="lang-en" class="btn btn-light" data-translate="lang_english">English</button>
-                            <button id="lang-ar" class="btn btn-light" data-translate="lang_arabic">عربي</button>
+                            <button id="lang-en" class="btn btn-light" data-translate="lang_english"
+                                onclick="loadLanguage('en')">English</button>
+                            <button id="lang-ar" class="btn btn-light" data-translate="lang_arabic"
+                                onclick="loadLanguage('ar')">عربي</button>
                         </div>
                     </li>
                 </ul>
@@ -63,9 +65,12 @@
             <div class="row align-items-center min-vh-100">
                 <div class="col-lg-6 text-center text-lg-start fade-in">
                     <h1 class="display-3 fw-bold mb-4" data-translate="hero_title">حوّل قوتك العاملة</h1>
-                    <p class="lead mb-4" data-translate="hero_subtitle">حلول استشارية متخصصة للموارد البشرية لدفع أعمالك نحو الأمام</p>
-                    <a href="#contact" class="btn btn-primary btn-lg me-3 hover-lift" data-translate="hero_cta_primary">ابدأ الآن</a>
-                    <a href="#services" class="btn btn-outline-light btn-lg hover-lift" data-translate="hero_cta_secondary">اعرف المزيد</a>
+                    <p class="lead mb-4" data-translate="hero_subtitle">حلول استشارية متخصصة للموارد البشرية لدفع أعمالك
+                        نحو الأمام</p>
+                    <a href="#contact" class="btn btn-primary btn-lg me-3 hover-lift"
+                        data-translate="hero_cta_primary">ابدأ الآن</a>
+                    <a href="#services" class="btn btn-outline-light btn-lg hover-lift"
+                        data-translate="hero_cta_secondary">اعرف المزيد</a>
                 </div>
                 <div class="col-lg-6 text-center fade-in-delay">
                     <div class="hero-image-placeholder">
@@ -110,15 +115,20 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold mb-3" data-translate="footer_brand_title">استشارات ESG للموارد البشرية</h5>
-                    <p data-translate="footer_brand_description">شريكك الموثوق في التميز في الموارد البشرية والتطوير التنظيمي.</p>
+                    <p data-translate="footer_brand_description">شريكك الموثوق في التميز في الموارد البشرية والتطوير
+                        التنظيمي.</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold mb-3" data-translate="footer_quick_links">روابط سريعة</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#company-info" class="text-light text-decoration-none" data-translate="company_info">معلومات الشركة</a></li>
-                        <li><a href="#services" class="text-light text-decoration-none" data-translate="our_services">الخدمات</a></li>
-                        <li><a href="#customers" class="text-light text-decoration-none" data-translate="our_clients">عملاؤنا</a></li>
-                        <li><a href="#contact" class="text-light text-decoration-none" data-translate="contact_us">اتصل بنا</a></li>
+                        <li><a href="#company-info" class="text-light text-decoration-none"
+                                data-translate="company_info">معلومات الشركة</a></li>
+                        <li><a href="#services" class="text-light text-decoration-none"
+                                data-translate="our_services">الخدمات</a></li>
+                        <li><a href="#customers" class="text-light text-decoration-none"
+                                data-translate="our_clients">عملاؤنا</a></li>
+                        <li><a href="#contact" class="text-light text-decoration-none" data-translate="contact_us">اتصل
+                                بنا</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -133,7 +143,8 @@
             </div>
             <hr class="my-4 bg-light">
             <div class="text-center">
-                <p class="mb-0" data-translate="footer_copyright">&copy; 2024 استشارات ESG للموارد البشرية. جميع الحقوق محفوظة.</p>
+                <p class="mb-0" data-translate="footer_copyright">&copy; 2024 استشارات ESG للموارد البشرية. جميع الحقوق
+                    محفوظة.</p>
             </div>
         </div>
     </footer>

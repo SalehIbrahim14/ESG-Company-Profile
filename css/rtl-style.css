@@ -67,3 +67,8 @@ input, select, textarea {
 .btn-group {
   direction: rtl !important;
 }
+
+.language-switcher {
+  margin-right: 12rem !important;
+  margin-left: 0rem !important;
+}
