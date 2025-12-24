@@ -9,32 +9,39 @@ require("dotenv").config();
 const app = express();
 const PORT = 3000;
 
-// البرمجيات الوسيطة
-app.use(cors()); // السماح بالطلبات عبر المصادر
+// Middleware
+app.use(cors()); // Allow cross-origin requests
 app.use(bodyParser.json());
 
-// مسار لمعالجة إرسال البريد الإلكتروني
+// Route to handle email sending
 app.post("/send", async (req, res) => {
-  const { name, email, message, phone, service, companyName } = req.body;
+  const { name, email, message, phone, service, companyName, lang } = req.body;
 
-  // المسار إلى قالب البريد الإلكتروني العربي
-  const templatePath = path.join(__dirname, "email-template.html");
+  // Determine language (default to Arabic if not specified)
+  const language = lang || "ar";
+  
+  // Select appropriate email template based on language
+  const templateFileName = language === "en" ? "email-template-en.html" : "email-template.html";
+  const templatePath = path.join(__dirname, templateFileName);
 
   try {
     fs.readFile(templatePath, "utf8", async (err, html) => {
       if (err) {
-        console.error("خطأ في قراءة ملف HTML:", err);
-        return res.status(500).send("فشلت معالجة قالب البريد الإلكتروني.");
+        console.error("Error reading HTML file:", err);
+        return res.status(500).send("Failed to process email template.");
       }
 
-      // استبدال العناصر النائبة في القالب
+      // Define localized fallback values
+      const notAvailable = language === "en" ? "N/A" : "غير متوفر";
+
+      // Replace placeholders in template
       const updatedHtml = html
-        .replace("{{name}}", name || "غير متوفر")
-        .replace("{{email}}", email || "غير متوفر")
-        .replace("{{phone}}", phone || "غير متوفر")
-        .replace("{{service}}", service || "غير متوفر")
-        .replace("{{companyName}}", companyName || "غير متوفر")
-        .replace("{{message}}", message || "غير متوفر");
+        .replace("{{name}}", name || notAvailable)
+        .replace("{{email}}", email || notAvailable)
+        .replace("{{phone}}", phone || notAvailable)
+        .replace("{{service}}", service || notAvailable)
+        .replace("{{companyName}}", companyName || notAvailable)
+        .replace("{{message}}", message || notAvailable);
 
       const transporter = nodemailer.createTransport({
         host: "sandbox.smtp.mailtrap.io",
@@ -45,25 +52,28 @@ app.post("/send", async (req, res) => {
         }
       });
 
-      // تكوين خيارات البريد الإلكتروني
+      // Configure email options
+      const subjectPrefix = language === "en" ? "New message from" : "رسالة جديدة من";
       const mailOptions = {
-        from: email, // البريد الإلكتروني للمستخدم
-        to: "your_company@example.com", // استبدل ببريدك الإلكتروني للشركة
-        subject: `رسالة جديدة من ${name}`,
+        from: email, // User's email
+        to: "your_company@example.com", // Replace with your company email
+        subject: `${subjectPrefix} ${name}`,
         html: updatedHtml,
       };
 
 
       await transporter.sendMail(mailOptions);
-      res.status(200).send("تم إرسال الرسالة بنجاح!");
+      const successMessage = language === "en" ? "Message sent successfully!" : "تم إرسال الرسالة بنجاح!";
+      res.status(200).send(successMessage);
     });
   } catch (error) {
-    console.error("خطأ في إرسال البريد الإلكتروني: ", error);
-    res.status(500).send("فشل إرسال الرسالة.");
+    console.error("Error sending email: ", error);
+    const errorMessage = language === "en" ? "Failed to send message." : "فشل إرسال الرسالة.";
+    res.status(500).send(errorMessage);
   }
 });
 
-// تشغيل الخادم
+// Start server
 app.listen(PORT, () => {
-  console.log(`الخادم يعمل على http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
