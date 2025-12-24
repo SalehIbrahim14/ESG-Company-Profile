@@ -13,6 +13,9 @@ const PORT = 3000;
 app.use(cors()); // Allow cross-origin requests
 app.use(bodyParser.json());
 
+// Serve static files from the root directory
+app.use(express.static(path.join(__dirname)));
+
 // Route to handle email sending
 app.post("/send", async (req, res) => {
   const { name, email, message, phone, service, companyName, lang } = req.body;
