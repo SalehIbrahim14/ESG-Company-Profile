@@ -7,7 +7,7 @@ const CONFIG = {
 
 // Wait for DOM to fully load
 document.addEventListener('DOMContentLoaded', function () {
-    // alert('Welcome to ESG HR Consulting! Explore our services and contact us for more information.');
+    // alert('Welcome to FIRST ANSWER FOR CONSULTING! Explore our services and contact us for more information.');
     // Load section content dynamically
     loadSectionContent();
 
